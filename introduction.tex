@@ -1,55 +1,53 @@
-\chapter*{Introduction}
-\markboth{\textsc{Introduction}}{}
-\addcontentsline{toc}{chapter}{Introduction}
+\chapter*{引言}
+\markboth{\textsc{引言}}{}
+\addcontentsline{toc}{chapter}{引言}
 \setcounter{page}{1}
 \pagenumbering{arabic}
 
 
-\emph{Homotopy type theory} is a new branch of mathematics that combines aspects of several different fields in a surprising way. It is based on a recently discovered connection between \emph{homotopy theory} and \emph{type theory}.
-Homotopy theory is an outgrowth of algebraic topology and homological algebra, with relationships to higher category theory; while type theory is a branch of mathematical logic and theoretical computer science.
-Although the connections between the two are currently the focus of intense investigation, it is increasingly clear that they are just the beginning of a subject that will take more time and more hard work to fully understand.
-It touches on topics as seemingly distant as the homotopy groups of spheres, the algorithms for type checking, and the definition of weak $\infty$-groupoids.
+\emph{同伦类型论}是一个把若干不同领域以惊人的方式结合在一起的新兴数学分支。它基于近期发现的\emph{同伦论}和\emph{类型论}之间的联系。
+同伦论是代数拓扑和同调代数的一个分支，与高阶范畴论有关；而类型论是数理逻辑和理论计算机科学的一个分支。
+尽管两者的联系目前是深入研究的焦点，越来越清楚的是，它们只是一个需要花更多时间和更多艰苦工作来完全理解的学科的开端。
+这个学科触及看上去相距甚远的主题，例如球体的同伦群，类型检查算法和弱$\infty$-群胚的定义。
 
-Homotopy type theory also brings new ideas into the very foundation of mathematics.
+同伦类型论也给数学的根本基础问题带来了新的理念。
 \index{foundations, univalent}%
-On the one hand, there is Voevodsky's subtle and beautiful \emph{univalence axiom}. 
+一方面，有Voevodsky的微妙而美丽的\emph{一价公理}。 
 \index{univalence axiom}%
-The univalence axiom implies, in particular, that isomorphic structures can be identified, a principle that mathematicians have been happily using on workdays, despite its incompatibility with the ``official'' doctrines of conventional foundations.
-On the other hand, we have \emph{higher inductive types}, which provide direct, logical descriptions of some of the basic spaces and constructions of homotopy theory: spheres, cylinders, truncations, localizations, etc.
-Both ideas are impossible to capture directly in classical set-theoretic foundations, but when combined in homotopy type theory, they permit an entirely new kind of ``logic of homotopy types''.
+特别地，一价公理表明可以区分互相同构的结构，这是一个数学家在工作中愉快地使用的原则，尽管它违背“官方”的常规数学基础的教条。
+另一方面，我们有\emph{高阶导出类型}，它为同伦论中一些基本的空间和构造，如球体，柱体，截面，局部化等，提供直接的逻辑描述。这两点都无法在经典集合论基础下直接实现，当它们在同伦类型论中组合在一起时，则允许实现一种全新的“同伦类型逻辑”。
 \index{foundations}%
 
-This suggests a new conception of foundations of mathematics, with intrinsic homotopical content, an ``invariant'' conception of the objects of mathematics --- and convenient machine implementations, which can serve as a practical aid to the working mathematician.
-This is the \emph{Univalent Foundations} program.
-The present book is intended as a first systematic exposition of the basics of univalent foundations, and a collection of examples of this new style of reasoning --- but without requiring the reader to know or learn any formal logic, or to use any computer proof assistant.
+这提出了一个数学基础的新概念，具有内在的同伦内容，数学对象的“不变”概念，以及方便的机器实现，可以作为数学家工作的实用助理。
+这就是\emph{一价基础}项目。本书意图成为一价基础理论的基本内容的第一本系统阐述，以及新型推理风格的例子的一个合集————但不需要读者了解或学习任何形式逻辑，或使用任何计算机证明助理软件。
 
 % This enlarges the page by one line in letter format. Use sparringly.
 \OPTwidow
 
-We emphasize that homotopy type theory is a young field, and univalent foundations is very much a work in progress. 
-This book should be regarded as a ``snapshot'' of just one portion of the field, taken at the time it was written, rather than a polished exposition of a completed edifice. 
-As we will discuss briefly later, there are many aspects of homotopy type theory that are not yet fully understood --- and some that are not even touched upon here. 
-The ultimate theory will almost certainly not look exactly like the one described in this book, but it will surely be \emph{at least} as capable and powerful; we therefore believe that univalent foundations will eventually become a viable alternative to set theory as the ``implicit foundation'' for the unformalized mathematics done by most mathematicians.
+我们强调，同伦类型论是一个年轻的领域，一价基础在很大程度上仍是一个还在进行中的工作。
+这本书应被视为只是该领域的一部分的一个快照，拍摄于成书时，而不是对一座完整的大厦的一个完善的阐述。
+就像我们稍后将简短讨论的那样，同伦类型论有很多尚未完全被理解的方面————其中甚至有一些方面不会在本书中触及。
+最终的理论几乎肯定不会像本书中描述的那样，但\emph{至少}会同样强大有力；因此，我们相信，一价基础最终将成为集合论的一个可行替代方案，作为大多数数学家所做的非形式化数学工作的“隐式基础”。
 
-\subsection*{Type theory}
+\subsection*{类型论}
 
-Type theory was originally invented by Bertrand Russell \cite{Russell:1908},\index{Russell, Bertrand} as a device for blocking the paradoxes in the logical foundations of mathematics  that were under investigation at the time.
-It was developed further by many people over the next few decades, particularly Church~\cite{Church:1940tu,Church:1941tc} who combined it with his \textit{$\lambda$-calculus}.
-Although it is not generally regarded as the foundation for classical mathematics, set theory being more customary, type theory still has numerous applications, especially in computer science and the theory of programming languages~\cite{Pierce-TAPL}.
+类型论最初是由Bertrand Russell \cite{Russell:1908},\index{Russell, Bertrand}发明的，作为一种消除当时正在研究的数学逻辑基础中的悖论的手段。
+在接下来的几十年中，许多人发展了它，特别是Church~\cite{Church:1940tu,Church:1941tc}，他将其与他的\textit{$\lambda$-演算}结合起来。
+尽管类型论通常未被视为经典数学的基础，更常见的是以集合论为基础，它仍然有很多应用，特别是在计算机科学和程序语言理论~\cite{Pierce-TAPL}中。
 \index{programming}%
 \index{type theory}%
 \index{lambda-calculus@$\lambda$-calculus}%
-Per Martin-L\"{o}f \cite{Martin-Lof-1972,Martin-Lof-1973,Martin-Lof-1979,martin-lof:bibliopolis}, among others,
-developed a ``predicative'' modification of Church's type system, which is now usually called dependent, constructive, intuitionistic, or simply \emph{Martin\--L\"of type theory}. This is the basis of the system that we consider here; it was originally intended as a rigorous framework for the formalization of constructive mathematics.  In what follows, we will often use ``type theory'' to refer specifically to this system and similar ones, although type theory as a subject is much broader (see \cite{somma,kamar} for the history of type theory).
+Per Martin-L\"{o}f \cite{Martin-Lof-1972,Martin-Lof-1973,Martin-Lof-1979,martin-lof:bibliopolis}和其他人开发了Church类型系统的一个“谓词性的”调整，现在通常称为依赖，构造性，直觉，或简单称为\emph{Martin\--L\"of类型论}。这是我们在此考察的系统的基础；它原本意图作为构造性数学形式化的一个严格框架。在接下来，我们将用“类型论”指代该系统或类似系统，虽然类型论作为一个学科要远比这广泛(类型论的历史可见于\cite{somma,kamar})。
 
-In type theory, unlike set theory, objects are classified using a primitive notion of \emph{type}, similar to the data-types used in programming languages.  These elaborately structured types can be used to express detailed specifications of the objects classified, giving rise to principles of reasoning about these objects.  To take a very simple example, the objects of a product type $A\times B$ are known to be of the form $\pairr{a,b}$, and so one automatically knows how to construct them and how to decompose them. Similarly, an object of function type $A\to B$ can be acquired from an object of type $B$ parametrized by objects of type $A$, and can be evaluated at an argument of type $A$.  This rigidly predictable behavior of all objects (as opposed to set theory's more liberal formation principles, allowing inhomogeneous sets) is one aspect of type theory that has led to its extensive use in verifying the correctness of computer programs.  The clear reasoning principles associated with the construction of types also form the basis of modern \emph{computer proof assistants},%
+在类型论中，与集合论不同，对象使用原始概念\emph{类型}进行分类，和程序语言中使用的数据类型相似。 这些精心构造的类型可用于表示分类对象的详细规范，从而产生关于这些对象的推理原则。 举一个非常简单的例子，我们知道乘积类型$A\times B$的对象形如$\pairr{a,b}$，因此自动地知道如何去构造和分解它们。 类似地，函数类型$A\to B$的对象可由类型$B$的对象在类型$A$的对象中的参数化得到，用类型$A$的对象作为参数取值。 所有对象的这种严格可预测的行为（与集合论更自由的允许非齐次集合的形成原则相反）是类型理论的一个方面，导致其广泛用于验证计算机程序的正确性。  与类型构造相关的明确的推理原则也形成了现代\emph{计算机证明助理}的基础，%
 \index{proof!assistant}%
 \indexsee{computer proof assistant}{proof assistant}
 \index{mathematics!formalized}%
-which are used for formalizing mathematics and verifying the correctness of formalized proofs.  We return to this aspect of type theory below.  
+被应用于数学形式化和形式化证明的正确性验证。 下面我们回到类型论的这一方面。
 
-One problem in understanding type theory from a mathematical point of view, however, has always been that the basic concept of \emph{type} is unlike that of \emph{set} in ways that have been hard to make precise.  We believe that the new idea of regarding types, not as strange sets (perhaps constructed without using classical logic), but as spaces, viewed from the perspective of homotopy theory, is a significant step forward.  In particular, it solves the problem of understanding how the notion of equality of elements of a type differs from that of elements of a set.
+然而，从数学角度理解类型论却总有一个难题：\emph{类型}的基本概念不像\emph{集合}一样，前者在某些方面难以精确定义。 我们认为，从同伦理论的角度，将类型视为空间，而不是奇怪的集合（可能是在不使用经典逻辑的情况下构建的），是向前迈出的重要一步。特别是，它解决了理解类型元素的相等概念与集合元素的相等的概念的差异的问题。
 
+在同伦论中人们
 In homotopy theory one is concerned with spaces
 \index{topological!space}%
 and continuous mappings between them, 
