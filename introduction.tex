@@ -14,7 +14,7 @@
 \index{foundations, univalent}%
 一方面，有Voevodsky的微妙而美丽的\emph{一价公理}。 
 \index{univalence axiom}%
-特别地，一价公理表明可以区分互相同构的结构，这是一个数学家在工作中愉快地使用的原则，尽管它违背“官方”的常规数学基础的教条。
+特别地，一价公理表明可以等同互相同构的结构，这是一个数学家在工作中愉快地使用的原则，尽管它违背“官方”的常规数学基础的教条。
 另一方面，我们有\emph{高阶导出类型}，它为同伦论中一些基本的空间和构造，如球体，柱体，截面，局部化等，提供直接的逻辑描述。这两点都无法在经典集合论基础下直接实现，当它们在同伦类型论中组合在一起时，则允许实现一种全新的“同伦类型逻辑”。
 \index{foundations}%
 
@@ -47,121 +47,117 @@ Per Martin-L\"{o}f \cite{Martin-Lof-1972,Martin-Lof-1973,Martin-Lof-1979,martin-
 
 然而，从数学角度理解类型论却总有一个难题：\emph{类型}的基本概念不像\emph{集合}一样，前者在某些方面难以精确定义。 我们认为，从同伦理论的角度，将类型视为空间，而不是奇怪的集合（可能是在不使用经典逻辑的情况下构建的），是向前迈出的重要一步。特别是，它解决了理解类型元素的相等概念与集合元素的相等的概念的差异的问题。
 
-在同伦论中人们
-In homotopy theory one is concerned with spaces
+在同伦论中人们关心空间
 \index{topological!space}%
-and continuous mappings between them, 
+及其之间互不同伦的连续映射。
 \index{function!continuous!in classical homotopy theory}%
-up to homotopy.  A \emph{homotopy}
+一对连续映射$f : X \to Y$和$g : X\to Y$的\emph{同伦}
 \index{homotopy!topological}%
-between a pair of continuous maps $f : X \to Y$
-and  $g : X\to Y$ is 
-a continuous map $H : X \times [0, 1] \to Y$ satisfying
-$H(x, 0) = f (x)$  and $H(x, 1) = g(x)$. The homotopy $H$ may be thought of as a ``continuous deformation'' of $f$ into $g$. The spaces $X$ and $Y$ are said to be \emph{homotopy equivalent},
+是连续映射$H : X \times [0, 1] \to Y$, 满足
+$H(x, 0) = f (x)$以及$H(x, 1) = g(x)$. 同伦$H$可想象为$f$到$g$的连续变形。 空间$X$和$Y$称为\emph{同伦等价的}，
 \index{homotopy!equivalence!topological}%
-$\eqv X Y$, if there are continuous maps going back and forth, the composites of which are homotopical to the respective identity mappings, i.e., if they are isomorphic ``up to homotopy''.  Homotopy equivalent spaces have the same algebraic invariants (e.g., homology, or the fundamental group), and are said to have the same \emph{homotopy type}.
+$\eqv X Y$, 若存在来回的连续映射，使其复合都同伦于恒等映射，若它们“在同伦意义下”是同构的。 同伦等价的空间有相同的代数不变量（如同调或基本群），它们称为具有相同的\emph{同伦类型}。
 
-\subsection*{Homotopy type theory}
+\subsection*{同伦类型论}
 
-Homotopy type theory (HoTT) interprets type theory from a homotopical perspective.
-In homotopy type theory, we regard the types as ``spaces'' (as studied in homotopy theory) or higher groupoids, and the logical constructions (such as the product $A\times B$) as homotopy-invariant constructions on these spaces.
-In this way, we are able to manipulate spaces directly without first having to develop point-set topology (or any combinatorial replacement for it, such as the theory of simplicial sets).
-To briefly explain this perspective, consider first the basic concept of type theory, namely that
-the \emph{term} $a$ is of \emph{type} $A$, which is written:
+同伦类型论 (HoTT) 从同伦角度解释类型论。
+在同伦类型论中，我们把类型视为“空间”（就像在同伦论中研究的那样）或高阶群胚，逻辑构造（如乘积$A\times B$）则视为在上述空间上的同伦不变构造。
+通过这种方式，我们不需要首先发展点集拓扑学（或其组合替代品，如单纯形集合论）就可以直接操纵空间。
+为了简要说明该观点，首先考察类型论的基本概念，即\emph{项}$a$具有\emph{类型}$A$，记为：
 \[ a:A. \]
-This expression is traditionally thought of as akin to:
+这种表达传统上被认为类似于：
 \begin{center}
-``$a$ is an element of the set $A$''.
+“$a$是集合$A$的一个元素”。
 \end{center}
-However, in homotopy type theory we think of it instead as:
+然而，在同伦类型论中，我们认为它是：
 \begin{center}
-``$a$ is a point of the space $A$''.
+“$a$是空间$A$的一个点”。
 \end{center}
 \index{continuity of functions in type theory@``continuity'' of functions in type theory}%
-Similarly, every function $f : A\to B$ in type theory is regarded as a continuous map from the space $A$ to the space $B$.
+类似地，在类型论中的每个函数$f : A\to B$被视为从空间$A$到空间$B$的一个连续映射。
 
-We should stress that these ``spaces'' are treated purely homotopically, not topologically.
-For instance, there is no notion of ``open subset'' of a type or of ``convergence'' of a sequence of elements of a type.
-We only have ``homotopical'' notions, such as paths between points and homotopies between paths, which also make sense in other models of homotopy theory (such as simplicial sets).
-Thus, it would be more accurate to say that we treat types as \emph{$\infty$-groupoids}\index{.infinity-groupoid@$\infty$-groupoid}; this is a name for the ``invariant objects'' of homotopy theory which can be presented by topological spaces,
+我们需要强调这些“空间”被以纯同伦而非拓扑地处理。
+例如，不存在类型的“开子集”或类型元素序列的“收敛”的概念。
+我们只有“同伦”概念，如点之间的道路和道路之间的同伦，这在同伦理论的其他模型（如单纯集）中也有意义。
+因此，更准确地说，我们将类型视为\emph{$\infty$-群胚}\index{.infinity-groupoid@$\infty$-groupoid}；这是同伦理论中“不变对象”的名称，它可以由拓扑空间，
 \index{topological!space}%
-simplicial sets, or any other model for homotopy theory.
-However, it is convenient to sometimes use topological words such as ``space'' and ``path'', as long as we remember that other topological concepts are not applicable.
+单纯集或同伦论的任何其他模型表示。
+然而，有时使用“空间”和“路径”等拓扑词是方便的，只要我们记住其他拓扑概念不适用。
 
-(It is tempting to also use the phrase \emph{homotopy type}
+（在这些对象中使用“同伦类型”
 \index{homotopy!type}%
-for these objects, suggesting the dual interpretation of ``a type (as in type theory) viewed homotopically'' and ``a space considered from the point of view of homotopy theory''.
-The latter is a bit different from the classical meaning of ``homotopy type'' as an \emph{equivalence class} of spaces modulo homotopy equivalence, although it does preserve the meaning of phrases such as ``these two spaces have the same homotopy type''.)
+这一术语也很诱人，这表明了对“从同伦角度看的类型（如类型论中的类型）”和“从同伦论角度看的空间”的双重解释。
+后者与作为模同伦等价空间的\emph{等价类}的“同伦类型”的经典含义有点不同，尽管它保留了诸如“这两个空间具有相同的同伦类型”之类的术语的原意。）
 
-The idea of interpreting types as structured objects, rather than sets, has a long pedigree, and is known to clarify various mysterious aspects of type theory.
-For instance, interpreting types as sheaves helps explain the intuitionistic nature of type-theoretic logic, while interpreting them as partial equivalence relations or ``domains'' helps explain its computational aspects.
-It also implies that we can use type-theoretic reasoning to study the structured objects, leading to the rich field of categorical logic.
-The homotopical interpretation fits this same pattern: it clarifies the nature of \emph{identity} (or equality) in type theory, and allows us to use type-theoretic reasoning in the study of homotopy theory.
+将类型解释为结构化对象而不是集合的想法由来已久，并以澄清类型论的各种神秘方面而闻名。
+例如，将类型解释为层有助于解释类型理论逻辑的直觉性质，而将它们解释为部分等价关系或“域”有助于说明其计算方面。
+这也意味着我们可以使用类型论推理来研究结构化对象，从而形成丰富的范畴逻辑领域。
+同伦解释也符合相同的模式：它阐明了类型论中的\emph{恒等}（或相等）性质，从而允许我们在同伦论研究中使用类型论推理。
 
-The key new idea of the homotopy interpretation is that the logical notion of identity $a = b$ of two objects $a, b: A$ of the same type $A$ can be understood as the existence of a path $p : a \leadsto b$ from point $a$ to point $b$ in the space $A$.
-This also means that two functions $f, g: A\to B$ can be identified if they are homotopic, since a homotopy is just a (continuous) family of paths $p_x: f(x) \leadsto g(x)$ in $B$, one for each $x:A$.
-In type theory, for every type $A$ there is a (formerly somewhat mysterious) type $\idtypevar{A}$ of identifications of two objects of $A$; in homotopy type theory, this is just the \emph{path space} $A^I$ of all continuous maps $I\to A$ from the unit interval.
+同伦解释的关键思想是，具有同一类型$A$的两个对象$a, b: A$之间的等式$a = b$可以理解为在空间$A$中存在点$a$到点$b$的一条道路$p : a \leadsto b$.
+这也意味着两个函数$f, g: A\to B$可被等同，若它们是同伦的，因为同伦只是$B$中的（连续）道路族$p_x: f(x) \leadsto g(x)$, 其中每个$x:A$对应一条道路。
+在类型论中，对每个类型$A$, 存在（以前有点神秘的）$A$中两对象的恒等类型$\idtypevar{A}$; 在同伦论中，这只是\emph{道路空间}$A^I$, 表示全体从单位区间发出的连续映射$I\to A$.
 \index{unit!interval}%
 \index{interval!topological unit}%
 \index{path!topological}%
 \index{topological!path}%
-In this way, a term $p : \idtype[A]{a}{b}$ represents a path $p : a \leadsto b$ in $A$. 
+以这种方式，项$p : \idtype[A]{a}{b}$表示$A$中的一条道路$p : a \leadsto b$. 
 
-The idea of homotopy type theory arose around 2006 in independent work by Awodey and Warren~\cite{AW} and Voevodsky~\cite{VV}, but it was inspired by 
-Hofmann and Streicher's earlier groupoid interpretation~\cite{hs:gpd-typethy}.
-Indeed, higher-dimensional category theory (particularly the theory of weak $\infty$-groupoids) is now known to be intimately connected to homotopy theory, as proposed by Grothendieck and now being studied intensely by mathematicians of both sorts.
-The original semantic models of Awodey--Warren and Voevodsky use well-known notions and techniques from homotopy theory which are now also in use in higher category theory, such as  Quillen model categories and Kan\index{Kan complex} simplicial sets\index{simplicial!sets}.
+同伦类型论的思想出现在2006年Awodey和Warren~\cite{AW}以及Voevodsky~\cite{VV}互相独立的工作中，但也受到Hofmann和Streicher早一些的群胚解释~\cite{hs:gpd-typethy}的启发。
+事实上，已知高维范畴论（特别是弱$\infty$-群胚理论）和同伦论有紧密联系，这点由Grothendieck提出，而现在这两方面的数学家正在紧张地研究。
+Awodey--Warren和Voevodsky的原始语义模型使用同伦论中众所周知的符号和技术，它们现在也被用在高阶范畴论中，如Quillen模型范畴和Kan\index{Kan complex} 单纯集\index{simplicial!sets}。
 \index{Quillen model category}%
 \index{model category}%
 
-In particular, Voevodsky constructed an interpretation of type theory in Kan simplicial sets, and recognized that this interpretation satisfied a further crucial property which he dubbed \emph{univalence}.
-This had not previously been considered in type theory (although Church's principle of extensionality for propositions turns out to be a very special case of it, and Hofmann and Streicher had considered another special case under the name ``universe extensionality'').
-Adding univalence to type theory in the form of a new axiom has far-reaching consequences, many of which are natural, simplifying and compelling.
-The univalence axiom also further strengthens the homotopical view of type theory, since it holds in the simplicial model and other related models, while failing under the view of types as sets.
+特别地，Voevodsky基于Kan单纯集构造了一个类型论解释，意识到这种解释还满足一个关键性质，他将其戏称为\emph{一价}性。
+这在之前的类型论中没有考虑过（尽管Church的命题可拓性原理它的一个极其特殊的情况，而Hofmann和Streicher考虑过另一个名为“宇宙延展性”的特殊情况）。
+以新公理的形式在类型论中加入一价具有深远的影响，其中许多是自然的、简化的和令人信服的。
+一价公理还进一步加强了类型论的同伦观点，因为它在单纯模型和其他相关模型中成立，但在类型作为集合的观点下不成立。
 
-\subsection*{Univalent foundations}
+\subsection*{一价基础}
 
-Very briefly, the basic idea of the univalence axiom can be explained as follows.
-In type theory, one can have a \emph{universe} type, $\UU$, the terms of which are themselves types, $A : \UU$, etc.
-Those types that are terms of $\UU$ are commonly called \emph{small} types.
+长话短说，一价公理的基本思路可以解释如下。
+在类型论中，可以有\emph{宇宙}类型$\UU$, 其中的项本身也是类型，例如$A : \UU$等等。
+那些是$\UU$的项的类型通常称为\emph{小}类型。
 \index{type!small}%
 \index{small!type}%
-Like any type, $\UU$ has an identity type $\idtypevar{\UU}$, which expresses the identity relation $A = B$ between small types.
-Thinking of types as spaces, $\UU$ is a space, the points of which are spaces; to understand its identity type, we must ask, what is a path $p : A \leadsto B$ between spaces in $\UU$?
-The univalence axiom says that such paths correspond to homotopy equivalences $\eqv A B$, (roughly) as explained above.
-A bit more precisely, given any (small) types $A$ and $B$, in addition to the primitive type $\idtype[\UU]AB$ of identifications of $A$ with $B$, there is the defined type $\texteqv AB$ of equivalences from $A$ to $B$.
-Since the identity map on any object is an equivalence, there is a canonical map,
+像任何类型一样，$\UU$有一个相等类型$\idtypevar{\UU}$, 表示小类型之间的相等关系$A = B$.
+把类型想成空间，$\UU$是空间，上面的点也是空间，为了理解它的相等类型，我们必须问，$\UU$中的空间之间的道路$p : A \leadsto B$是什么？
+一价公理是说，（粗略来说）就像上面解释的一样，这些道路对应于同伦等价$\eqv A B$.
+更精确一点来说，给定任何（小）类型$A$和$B$, 再加上$A$和$B$之间的原始相等类型$\idtype[\UU]AB$, 就可以定义$A$到$B$的等价类型$\texteqv AB$.
+由于任何对象上的相等映射都是等价，因此有典型映射，
 \[\idtype[\UU]AB\to\texteqv AB.\]
-The univalence axiom states that this map is itself an equivalence.
-At the risk of oversimplifying, we can state this succinctly as follows:
+一价公理指出这个映射自己就是一个等价。
+冒着过度简化的风险，我们可以将其简洁地描述如下：
 
 \begin{description}\index{univalence axiom}%
-\item[Univalence Axiom:]  $\eqvspaced{(A = B)}{(\eqv A B)}$.
+\item[一价公理：]  $\eqvspaced{(A = B)}{(\eqv A B)}$.
 \end{description}
 %
-In other words, identity is equivalent to equivalence. \index{identity}% 
-In particular, one may say that ``equivalent types are identical''.
-However, this phrase is somewhat misleading, since it may sound like a sort of ``skeletality'' condition which \emph{collapses} the notion of equivalence to coincide with identity, whereas in fact univalence is about \emph{expanding} the notion of identity so as to coincide with the (unchanged) notion of equivalence.
+换句话说，相等等价于等价。
+\index{identity}% 
+特别地，可以说“等价的类型是相同的”。
+然而，这个短语有一些误导性，因为它听起来像是一种把等价的概念\emph{坍缩}以使之与相等吻合的“骨干性”条件，但事实上一价是\emph{扩展}相等概念以与（没有变化的）等价概念吻合。
 
-From the homotopical point of view, univalence implies that spaces of the same homotopy type are connected by a path in the universe $\UU$, in accord with the intuition of a classifying space for (small) spaces.
-From the logical point of view, however, it is a radically new idea: it says that isomorphic things can be identified!  Mathematicians are of course used to identifying isomorphic structures in practice, but they generally do so by ``abuse of notation''\index{abuse!of notation}, or some other informal device, knowing that the objects involved are not ``really'' identical.  But in this new foundational scheme, such structures can be formally identified, in the logical sense that every property or construction involving one also applies to the other. Indeed, the identification is now made explicit, and properties and constructions can be systematically transported along it.  Moreover, the different ways in which such identifications may be made themselves form a structure that one can (and should!)\ take into account.
+从同伦观点来看，根据（小）空间的分类空间的直觉，一价性表明具有相同同伦类型的空间之间有宇宙$\UU$中的道路连通。
+然而，从逻辑观点看，这是一个激进的新想法：它说彼此同构的事物可以等同！数学家在实践中当然习惯于把同构的结构等同，但他们一般是在知道涉及的对象并不是“真正”相同的前提下，通过“滥用符号”\index{abuse!of notation}或其他非正式的手段实现的。但在这一新基础方案中，这些结构可以正式等同，从逻辑意义上讲，涉及一个结构的每个属性或构造也适用于另一个结构。事实上，这个等同现在已经可以精确作出，可以沿用它以系统地转化性质和构造。此外，这种等同的不同方式本身形成了一种结构，人们可以（也应该！）\ 考虑到这一点。
 
-Thus in sum, for points $A$ and $B$ of the universe $\UU$ (i.e., small types), the univalence axiom identifies the following three notions:
+因此，总而言之，对于宇宙$\UU$的点（即小类型）$A$和$B$, 一价公理把以下三个概念等同：
 \begin{itemize}
-\item (logical) an identification $p:A=B$ of $A$ and $B$
-\item (topological) a path $p:A \leadsto B$ from $A$ to $B$ in $\UU$
-\item (homotopical) an equivalence $p:\eqv A B$ between $A$ and $B$.
+\item (逻辑的) $A$和$B$的相等$p:A=B$
+\item (拓扑的) $\UU$中一条从$A$到$B$的一条道路$p:A \leadsto B$
+\item (同伦的) $A$和$B$之间的一个等价$p:\eqv A B$.
 \end{itemize}
 
-\subsection*{Higher inductive types}\index{type!higher inductive}%
+\subsection*{高阶导出类型}\index{type!higher inductive}%
 
-One of the classical advantages of type theory is its simple and effective techniques for working with inductively defined structures.
-The simplest nontrivial inductively defined structure is the natural numbers, which is inductively generated by zero and the successor function.
-From this statement one can algorithmically\index{algorithm} extract the principle of mathematical induction, which characterizes the natural numbers.
-More general inductive definitions encompass lists and well-founded trees of all sorts, each of which is characterized by a corresponding ``induction principle''.
-This includes most data structures used in certain programming languages; hence the usefulness of type theory in formal reasoning about the latter.
-If conceived in a very general sense, inductive definitions also include examples such as a disjoint union $A+B$, which may be regarded as ``inductively'' generated by the two injections $A\to A+B$ and $B\to A+B$.
-The ``induction principle'' in this case is ``proof by case analysis'', which characterizes the disjoint union.
+类型理论的一个经典优点是它处理由归纳定义的结构的简单有效技术。
+最简单的非平凡的由归纳定义的结构是自然数，它由零和后继函数归纳生成。
+从这句话中，我们可以从算法\index{algorithm}上获取数学归纳法原理，而这表征了自然数。
+更一般的归纳定义包括各种类型的列表和良构造的树，每一种都有相应的“归纳原理”。
+这包括特定的编程语言中使用的大多数数据结构；因此，类型论在关于后者的形式推理中是有用的。
+若从非常普遍的意义考虑，归纳定义也包括像不交并$A+B$这样的例子，它可以被当成由两个单射$A\to A+B$和$B\to A+B$“归纳”生成的。
+这种情况下的“归纳原理”是“分情况分析证明”，这给出了不交并的特征。
 
 In homotopy theory, it is natural to consider also ``inductively defined spaces'' which are generated not merely by a collection of \emph{points}, but also by collections of \emph{paths} and higher paths.
 Classically, such spaces are called \emph{CW complexes}.
@@ -181,7 +177,7 @@ Spaces produced by the small object argument are infamously complicated and diff
 Thus, the combination of univalence and higher inductive types suggests the possibility of a revolution, of sorts, in the practice of homotopy theory.
 
 
-\subsection*{Sets in univalent foundations}
+\subsection*{一价基础中的集合}
 
 \index{set|(}%
 
@@ -260,7 +256,7 @@ In principle, this could be equally true for any other foundational system, but 
 \index{type theory!informal|)}%
 \index{mathematics!formalized|)}%
 
-\subsection*{Constructivity} 
+\subsection*{可构造性} 
 
 \index{mathematics!constructive|(}%
 
@@ -390,7 +386,7 @@ We summarize the different points of view of the type-theoretic operations in \c
 
 \index{mathematics!constructive|)}%
 
-\subsection*{Open problems} 
+\subsection*{公开问题} 
 
 \index{open!problem|(}%
 
@@ -429,7 +425,7 @@ The homotopy type theory community maintains a web site and group blog at \url{h
 Newcomers are always welcome!
 
 
-\subsection*{How to read this book}
+\subsection*{如何阅读本书}
 
 This book is divided into two parts.
 \cref{part:foundations}, ``Foundations'', develops the fundamental concepts of homotopy type theory.
